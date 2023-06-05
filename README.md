@@ -1,8 +1,11 @@
 # Exercise-07-Multiplexer-and-De-multiplexer
-### AIM: To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
-### THEORY 
+## AIM:
+To implement 4X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
+## HARDWARE REQUIRED:
+PC, Cyclone II , USB flasher
+## SOFTWARE REQUIRED:
+Quartus prime
+## THEORY 
 
 ## What are Multiplexer and Demultiplexer?
 In-network transmission, both the multiplexer and demultiplexer are combinational circuits. A multiplexer selects an input from several inputs then it is transmitted in the form of a single line. An alternative name of the multiplexer is MUX or data selector. A demultiplexer uses one input signal and generates many. So it is known as Demux or data distributor.
@@ -44,45 +47,70 @@ If the data bit D is low, the output Y1 is low. IF data bit D is high, the outpu
 
 If the control input changes to AB = 10, then all the gates are restricted except the third AND gate from the top. Then, data bit D is transmitted only to the output Y2; and, Y2 = Data. . The best example of 1X4 demultiplexer is IC 74155.
 
- 
- 
-### Procedure
-/* write all the steps invloved */
+## Procedure
+### Step1:
+Create a new project wizard in Quartus software.
+### Step2:
+Create a module including the file name.
+### Step3:
+Execute the code for Multiplexer and Demultiplexer in Verilog HDL file.
+### Step4:
+After the code ran successfully, get the RTL representation.
+### Step5:
+Finally obtain the timing diagram for both Multiplexer and Demultiplexer and end the program.
 
-
-
-### PROGRAM 
+## PROGRAM 
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by: Snakthi kumar S
+RegisterNumber: 212222110043 
 */
+### Multiplexer
+```c++
+module m(s0,s1,a0,a1,a2,a3,y);
+input s0,s1,a0,a1,a2,a3;
+output y;
+wire a,b,c,d,s0bar,s1bar;
+not (s0bar,s0);
+not (s1bar,s1);
+and (a,s0,s1,a3);
+and (b,s0bar,s1,a2);
+and (c,s0,s1bar,a1);
+and (d,s0bar,s1bar,a0);
+or (y,a,b,c,d);
+endmodule
+```
+### Demultiplexer
+```c++
+module dm(y0,y1,y2,y3,s0,s1,i);
+input s0,s1,i;
+output y0,y1,y2,y3;
+wire sbar,s1bar;
+nor(sbar,s0);
+nor(s1bar,s1);
+and(y0,i,sbar,s1);
+and(y1,i,sbar,s1bar);
+and(y2,i,s0,s1bar);
+and(y3,i,s0,s1);
+endmodule
+```
+## RTL LOGIC  
+### Multiplexer:
+![](DE07-1.png)
+### Demultiplexer:
+![](DE07-2.png)
 
+## TIMING DIGRAMS  
+### Multiplexer:
+![](DE07-3.png)
+### Demultiplexer:
+![](DE07-4.png)
 
+## TRUTH TABLE 
+### Multiplexer:
+![](DE07-5.png)
+### Demultiplexer:
+![](DE07-6.png)
 
-
-
-
-### RTL LOGIC  
-
-
-
-
-
-
-
-
-### TIMING DIGRAMS  
-
-
-
-
-
-### TRUTH TABLE 
-
-
-
-
-
-
-### RESULTS 
+## RESULT
+Thus the implementation of Multiplexer and Demultiplexer is verified.
